@@ -1,0 +1,37 @@
+.quiz {
+    display: flex;
+    justify-content: space-between;
+
+    width: 800px;
+    padding: 30px;
+
+    border-radius: 2rem;
+    box-sizing: border-box;
+    background-color: rgb(48, 48, 48);
+    box-shadow: 0 14px 28px rgba(95,218,251,0.25), 0 10px 10px rgba(95,218,251,0.22);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+
+    /* font-family: -apple-syste'; */
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 148%;
+}
+
+.quiz__text {
+    margin-right: 40px;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    height: 70%;
+    
+}
+
+.quiz__desc {
+
+}
+
