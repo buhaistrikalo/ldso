@@ -5,7 +5,7 @@ class Question extends Component {
     render() {
         return (
             <div className="quiz__question" >
-                Сколько будет 2 умножить на 2?
+                {this.props.question}
             </div>
         );
     }

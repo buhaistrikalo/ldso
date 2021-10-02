@@ -1,7 +1,4 @@
 .quiz {
-    display: flex;
-    justify-content: space-between;
-
     width: 800px;
     padding: 30px;
 
@@ -19,7 +16,7 @@
 }
 
 .quiz__text {
-    margin-right: 40px;
+    margin-right: 30px;
 }
 
 .wrapper {
@@ -31,7 +28,18 @@
     
 }
 
-.quiz__desc {
-
+.quiz__pull {
+    display: flex;
+    justify-content: space-between;
 }
 
+.quiz__score {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-weight: 700;
+    font-size: 37px;
+
+    padding: 30px;
+}
