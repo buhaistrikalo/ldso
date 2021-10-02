@@ -2,28 +2,30 @@ import React, {Component} from 'react';
 import "./answers.css"
 
 class Answers extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {value: 'coconut'};
-
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+    state = {
+        needPoints: 0,
+        userPoints: 0,
     }
 
-    handleChange(event) {
-        this.setState({value: event.target.value});
+    changeNeedPoints(count) {
+        this.setState({needPoints: count});
     }
 
-    handleSubmit(event) {
-        alert('Ваш любимый вкус: ' + this.state.value);
-        event.preventDefault();
+    changePoints(point) {
+        let more = this.state.userPoints + point
+        this.setState({userPoints: more})
+
     }
 
+    checkPoints() {
+        console.log(this.state.userPoints)
+    }
 
     render() {
         let count = 0
-        this.props.answers.map((ans) => {
-            if (ans.correct) count++
+
+        this.props.answers.forEach((ans) => {
+            if (ans.correct) count++;
         });
 
         if (count <= 1)
@@ -40,18 +42,34 @@ class Answers extends Component {
             );
         else
             return (
-                <form onSubmit={this.handleSubmit}>
-                    <label className="quiz__answers-wrapper">
-                        {this.props.answers.map((ans, index) =>
-                            <div key={index}>
-                                <button className="quiz__answers-button"
-                                    onClick={() => { }}
-                                >{ans.answer}</button>
-                            </div>
-                        )}
-                        <input type="submit" className="quiz__answers-button quiz__answers-button-submit" value="Отправить" />
-                    </label>
-                </form>
+
+                <label className="quiz__answers-wrapper">
+                    {this.props.answers.map((ans, index) =>
+                        <div key={index} >
+                            <button className="quiz__answers-button"
+                                onClick={() => {
+                                    this.changePoints(ans.correct ? 1 : -1)
+
+                                }}
+                            >{ans.answer}</button>
+                        </div >
+                    )}
+                    <button onClick={() => {this.checkPoints()}} className="quiz__answers-button quiz__answers-button-submit">Отправить</button>
+                </label>
+
+
+                // <form onSubmit={this.changePoints()}>
+                //     <label className="quiz__answers-wrapper">
+                //         {this.props.answers.map((ans, index) =>
+                //             <div key={index} >
+                //                 <button className="quiz__answers-button"
+                //                     onClick={() => {this.changePoints(ans.correct ? 1 : -1)}}
+                //                 >{ans.answer}</button>
+                //             </div >
+                //         )}
+                //         <input type="submit" className="quiz__answers-button quiz__answers-button-submit" value="Отправить" />
+                //     </label>
+                // </form>
             );
     }
 }

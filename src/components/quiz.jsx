@@ -4,12 +4,12 @@ import Question from './question/question';
 import Answers from './answers/answers';
 import "./quiz.css";
 
-import Questions from '../json/q.json';
+import Questions from '../json/q.json'; // question bank
 
 class Quiz extends Component { //сколько вариантов ответа
     state = {
         questions: Questions,
-        current: 0,
+        current: 4,
         score: 0,
         showScore: false,
     }
