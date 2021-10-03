@@ -94,4 +94,12 @@
 
 .quiz__score-button {
     margin-top: 50px;
+    background: none;
+    color: #fff;
+    border-color: #fff;
+}
+.quiz__score-button:hover {
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+    color: #61DAFB;
+    border-color: #61DAFB;
 }
