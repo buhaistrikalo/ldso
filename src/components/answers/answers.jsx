@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import "./answers.css"
+import Multibutton from './multiButton/multiButton';
 
 class Answers extends Component {
     state = {
@@ -11,65 +12,46 @@ class Answers extends Component {
         this.setState({needPoints: count});
     }
 
-    changePoints(point) {
-        let more = this.state.userPoints + point
-        this.setState({userPoints: more})
-
+    changePoints = (point) => {
+        this.setState({userPoints: this.state.userPoints + point})
     }
 
-    checkPoints() {
-        console.log(this.state.userPoints)
+    checkPoints(count) {
+        this.changeNeedPoints(count)
+        if (count - this.state.userPoints === 0)
+            this.props.updateData(true)
+        else this.props.updateData(false)
     }
 
     render() {
         let count = 0
-
         this.props.answers.forEach((ans) => {
             if (ans.correct) count++;
         });
 
+
         if (count <= 1)
             return (
-                <label className="quiz__answers-wrapper">
+                <div className="quiz__answers-wrapper">
                     {this.props.answers.map((ans, index) =>
                         <div key={index}>
-                            <button className="quiz__answers-button"
-                                onClick={() => {this.props.updateData(ans.correct)}}
+                            <button className="button"
+                                onClick={() => {
+                                    this.props.updateData(ans.correct)
+                                }}
                             >{ans.answer}</button>
                         </div>
                     )}
-                </label>
+                </div>
             );
         else
             return (
-
-                <label className="quiz__answers-wrapper">
+                <div className="quiz__answers-wrapper">
                     {this.props.answers.map((ans, index) =>
-                        <div key={index} >
-                            <button className="quiz__answers-button"
-                                onClick={() => {
-                                    this.changePoints(ans.correct ? 1 : -1)
-
-                                }}
-                            >{ans.answer}</button>
-                        </div >
+                        <Multibutton data={ans} key={index} changePoints={this.changePoints} />
                     )}
-                    <button onClick={() => {this.checkPoints()}} className="quiz__answers-button quiz__answers-button-submit">Отправить</button>
-                </label>
-
-
-                // <form onSubmit={this.changePoints()}>
-                //     <label className="quiz__answers-wrapper">
-                //         {this.props.answers.map((ans, index) =>
-                //             <div key={index} >
-                //                 <button className="quiz__answers-button"
-                //                     onClick={() => {this.changePoints(ans.correct ? 1 : -1)}}
-                //                 >{ans.answer}</button>
-                //             </div >
-                //         )}
-                //         <input type="submit" className="quiz__answers-button quiz__answers-button-submit" value="Отправить" />
-                //     </label>
-                // </form>
+                    <button onClick={() => {this.checkPoints(count)}} className="button quiz__answers-button_submit">Отправить</button>
+                </div>
             );
     }
 }
