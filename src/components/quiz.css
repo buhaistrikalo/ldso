@@ -1,3 +1,19 @@
+a { 
+  text-decoration: none;
+}
+
+.home{
+  display: flex;
+  align-items: center;
+}
+
+.button_center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
 .quiz {
     width: 800px;
     padding: 30px;
@@ -92,14 +108,17 @@
   transform: translateY(0);
 }
 
-.quiz__score-button {
-    margin-top: 50px;
+.button_black {
     background: none;
     color: #fff;
     border-color: #fff;
 }
-.quiz__score-button:hover {
+.button_black:hover {
     box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
     color: #61DAFB;
     border-color: #61DAFB;
+}
+
+.button_mt50 {
+  margin-top: 50px;
 }

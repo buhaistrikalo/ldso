@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import "./answers.css"
 import Multibutton from './multiButton/multiButton';
-
+import {Link} from 'react-router-dom';
 class Answers extends Component {
     state = {
         needPoints: 0,
@@ -50,7 +50,10 @@ class Answers extends Component {
                     {this.props.answers.map((ans, index) =>
                         <Multibutton data={ans} key={index} changePoints={this.changePoints} />
                     )}
-                    <button onClick={() => {this.checkPoints(count)}} className="button quiz__answers-button_submit">Отправить</button>
+                    <button onClick={() => {
+                        this.checkPoints(count)
+
+                    }} className="button quiz__answers-button_submit">Отправить</button>
                 </div>
             );
     }

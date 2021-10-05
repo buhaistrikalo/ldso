@@ -1,10 +1,13 @@
 import './App.css';
 import Quiz from './components/quiz';
 
-function App() {
+import React from 'react';
+
+
+function App({children}) {
 	return (
 		<div className="App">
-			<Quiz />
+			{children}
 		</div>
 	);
 }

@@ -3,9 +3,19 @@ import "./quiz.css";
 import Counter from './counter/counter';
 import Question from './question/question';
 import Answers from './answers/answers';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    location,
+    match,
+    matchPath,
+    Redirect,
+} from 'react-router-dom';
 
-
-import Questions from '../json/q.json'; // question bank
+import Questions from '../json/q.json'; // question bank 
+import Score from './score';
 
 class Quiz extends Component { //сколько вариантов ответа
     state = {
@@ -37,16 +47,17 @@ class Quiz extends Component { //сколько вариантов ответа
 
 
     render() {
-
         return (
+            // <Score score={this.state.score} count={this.state.questions.length} />
             <div className="quiz">
                 {this.state.showScore
-                    ? <div className="quiz__score">
-                        <div>Правильных ответов {this.state.score} из {this.state.questions.length}</div>
-                        <button className='button quiz__score-button'
-                            onClick={() => {this.resetQuiz()}}
-                        >Пройти заново</button>
-                    </div>
+                    ? <Redirect to={{
+                        pathname: '/score',
+                        state: {
+                            score: this.state.score,
+                            count: this.state.questions.length,
+                        }
+                    }} />
                     : <div className="quiz__pull">
                         <div className="quiz__text">
                             <Counter count={this.state.current + 1} length={this.state.questions.length} />
