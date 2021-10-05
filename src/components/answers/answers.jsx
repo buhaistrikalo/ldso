@@ -26,8 +26,6 @@ const Answers = (props) => {
     props.answers.forEach((ans) => {
         if (ans.correct) count++;
     });
-
-
     if (count <= 1)
         return (
             <div className="quiz__answers-wrapper">

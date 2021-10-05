@@ -1,5 +1,4 @@
 import './App.css';
-import Quiz from './components/quiz';
 
 import React from 'react';
 
