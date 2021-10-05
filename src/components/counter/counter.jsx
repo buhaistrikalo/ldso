@@ -1,15 +1,14 @@
 import React, {Component} from 'react';
 import "./counter.css"
 
-class Counter extends Component {
+const Counter = (props) => {
 
-    render() {
-        return (
-            <div className="quiz__counter">
-                Вопрос {this.props.count} / {this.props.length}
-            </div>
-        );
-    }
+    return (
+        <div className="quiz__counter">
+            Вопрос {props.count} / {props.length}
+        </div>
+    );
+
 }
 
 export default Counter;

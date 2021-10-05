@@ -1,28 +1,23 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 
-class Multibutton extends Component {
-    state = {
-        active: false
-    };
+const Multibutton = (props) => {
+    const [active, setActive] = useState(false);
+    return (
 
+        <button className={!active ? "button" : "button quiz__answers-button_active"}
+            onClick={() => {
+                setActive(active ? false : true)
+                props.changePoints(props.data.correct
+                    ? active
+                        ? -1 : 1
+                    : active
+                        ? 1 : -1)
 
-    render() {
-        return (
+            }}
+        > {props.data.answer}</button >
 
-            <button className={!this.state.active ? "button" : "button quiz__answers-button_active"}
-                onClick={() => {
-                    this.setState({active: this.state.active ? false : true})
-                    this.props.changePoints(this.props.data.correct
-                        ? this.state.active
-                            ? -1 : 1
-                        : this.state.active
-                            ? 1 : -1)
+    );
 
-                }}
-            >{this.props.data.answer}</button>
-
-        );
-    }
 }
 
 export default Multibutton;
