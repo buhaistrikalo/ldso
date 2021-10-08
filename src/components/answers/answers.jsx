@@ -6,7 +6,7 @@ const Answers = (props) => {
     const [userPoints, setUserPoints] = useState(0);
     const [needPoints, setNeedPoints] = useState(0);
 
-    const changeNeedPoints = (count) => {
+    const checkNeedPoints = (count) => {
         setNeedPoints(count)
     }
 
@@ -15,25 +15,21 @@ const Answers = (props) => {
     }
 
     const checkPoints = (count) => {
-        changeNeedPoints(count)
+        checkNeedPoints(count)
         if (count - userPoints === 0)
-            props.updateData(true)
-        else props.updateData(false)
+            props.nextQuestion(true)
+        else props.nextQuestion(false)
     }
 
-
-    let count = 0
-    props.answers.forEach((ans) => {
-        if (ans.correct) count++;
-    });
-    if (count <= 1)
+    let countChoices = props.answers.filter(ans => ans.correct).length
+    if (countChoices <= 1)
         return (
             <div className="quiz__answers-wrapper">
                 {props.answers.map((ans, index) =>
                     <div key={index}>
                         <button className="button"
                             onClick={() => {
-                                props.updateData(ans.correct)
+                                props.nextQuestion(ans.correct)
                             }}
                         >{ans.answer}</button>
                     </div>
@@ -47,9 +43,8 @@ const Answers = (props) => {
                     <Multibutton data={ans} key={index} changePoints={changePoints} />
                 )}
                 <button onClick={() => {
-                    checkPoints(count)
-
-                }} className="button quiz__answers-button_submit">Отправить</button>
+                    checkPoints(countChoices)
+                }} className="button quiz__answers-button-submit">Отправить</button>
             </div>
         );
 

@@ -15,8 +15,8 @@ const Quiz = () => { //сколько вариантов ответа
     const [score, setScore] = useState(0);
     const [showScore, setShowScore] = useState(false);
 
-    const updateData = (theTrue) => {
-        if (theTrue)
+    const nextQuestion = (point) => {
+        if (point)
         {
             setScore(score + 1)
         }
@@ -48,7 +48,7 @@ const Quiz = () => { //сколько вариантов ответа
                             <div className="quiz__desc">Выберете один правильный вариант ответа</div>
                         </div>
                     </div>
-                    <Answers updateData={updateData} answers={questions[current].answers} />
+                    <Answers nextQuestion={nextQuestion} answers={questions[current].answers} />
                 </div>
             }
         </div>
